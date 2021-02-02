@@ -15,7 +15,15 @@ export class HomePage {
     { icon: "help-circle-outline", text: "Ajuda"}
   ];
 
-  public slidesOptions: any = { slidesPerView: 3, freeMode: true }
+  public slidesOptions: any = { slidesPerView: 3, freeMode: true };
+
+  public items: any[] = [    
+    { icon: "person-outline", text: "Perfil"},
+    { icon: "cash-outline", text: "Configurar conta"},
+    { icon: "card-outline", text: "Configurar cartão"},
+    { icon: "phone-portrait-outline", text: "Configurações do app"},
+    { icon: "help-circle-outline", text: "Ajuda"}
+  ];
 
   constructor() {}
 
