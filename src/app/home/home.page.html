@@ -5,15 +5,15 @@
 
       <span>Kirk Douglas</span>
 
-      <ion-button color="light" fill="clear" size="small">
-        <ion-icon slot="icon-only" name="arrow-down-outline"></ion-icon>
+      <ion-button color="light" fill="clear" size="small" (click)="toggleBlocks()">
+        <ion-icon slot="icon-only" [name]="initialStep > 0 ? 'arrow-up-outline' : 'arrow-down-outline' "></ion-icon>
       </ion-button>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding" color="primary">
-  <div class="background">
+<ion-content class="ion-padding" color="primary" [scrollY]="!swiping">
+  <div class="background opacity-transition" #background>
     <div class="bank-information ion-text-center">
       <img src="/assets/qrcode.png" class="qrcode">
 
@@ -34,10 +34,10 @@
     </ion-button>
   </div>
 
-  <div class="blocks">
+  <div class="blocks" [ngClass]="fixedBlocks() ? 'fixed' : null" #blocks>
 
     <ion-card>
-      <ion-item class="ion-margin-vertical" lines="none">
+      <ion-item class="ion-margin-vertical" lines="none" #swipeDown>
         <ion-icon slot="start" name="card-outline"></ion-icon>
         <ion-label>Cartão de Crédito</ion-label>
       </ion-item>
@@ -107,9 +107,9 @@
   </div>
 </ion-content>
 
-<ion-footer class="ion-no-border">
+<ion-footer class="ion-no-border" [ngClass]="initialStep > 0 ? 'hidden' : null">
   <ion-toolbar class="ion-no-margin ion-padding-vertical" color="primary">
-    <ion-slides [options]="slidesOptions">
+    <ion-slides [options]="slidesOptions" class="opacity-transition">
       <ion-slide *ngFor="let option of options">
         <div class="container ion-text-left">
           <ion-icon [name]="option.icon"></ion-icon>
